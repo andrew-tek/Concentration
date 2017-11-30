@@ -3,6 +3,7 @@ package edu.cpp.concentration;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.NumberPicker;
 
@@ -28,9 +29,13 @@ public class InfoActivity extends AppCompatActivity {
 
     @OnClick(R.id.submitButton)
     public void moveToGameActivity() {
+        //Bundle bundle = new Bundle();
+        //bundle.putInt("numCards", numberPicker.getValue());
         Intent intent = new Intent(this, GameActivity.class);
+        int numCardsSelected = Integer.parseInt(numberPicker.getDisplayedValues()[numberPicker.getValue()]);
+        Log.i("toPass","cards selected reads: " + numCardsSelected);
+        intent.putExtra("numCards", numCardsSelected);
         startActivity(intent);
-
     }
 
 }
