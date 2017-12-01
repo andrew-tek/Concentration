@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ViewGroup;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,16 +22,29 @@ public class GameActivity extends AppCompatActivity {
 
     private int numCards;
     private List<Button> buttonList;
-    //private Map<Button, > buttonMap;
+    private Map<Button, Integer> buttonMap;
+    private int cardsSelected;
+    private Button firstSelected;
+    private Button secondSelected;
+    private boolean lastPairMatch;
+    private int score;
+    private final int[] CARD_FACES = {R.drawable.anduin, R.drawable.druid, R.drawable.garrosh,
+            R.drawable.guldan, R.drawable.jaina, R.drawable.lich, R.drawable.rexxar, R.drawable.thrall,
+            R.drawable.uther, R.drawable.valeera};
 
     @BindView(R.id.endGameButton)
     Button endGame;
+    @BindView(R.id.tryAgainButton)
+    Button tryAgain;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        numCards = getIntent().getIntExtra("numCards",-1);
-        if(numCards == -1){
+        numCards = getIntent().getIntExtra("numCards", -1);
+        cardsSelected = 0;
+        score = 0;
+        lastPairMatch = false;
+        if (numCards == -1) {
             Log.i("gameError", "Number of cards not properly passed! Defaulting to max cards.");
             numCards = 20;
         }
@@ -43,15 +56,55 @@ public class GameActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    private View.OnClickListener onClickFlipper(final Button button)  {
+        return new View.OnClickListener() {
+            public void onClick(View v) {
+                if(cardsSelected == 0){
+                    firstSelected = button;
+                    cardsSelected = 1;
+                    button.setBackgroundResource(buttonMap.get(button));
+                }else if(cardsSelected == 1){
+                    cardsSelected = 2;
+                    secondSelected = button;
+                    if(buttonMap.get(button) == buttonMap.get(firstSelected)){
+                        score += 2;
+                        lastPairMatch = true;
+                    }else{
+                        if(score > 0){
+                            score -= 1;
+                        }
+                    }
+                    button.setBackgroundResource(buttonMap.get(button));
+                }
+            }
+        };
+    }
+
+    //only call after buttonList has been initialized (call initCardsHandler)
+    private void mapCards(){
+        buttonMap = new HashMap<>();
+        List<Integer> cardFaceList = new ArrayList<>();
+        for(int i = 0; i < numCards; i++){
+            int index = i/2; //integer division ensures that two copies of each card face end up in list
+            cardFaceList.add(CARD_FACES[index]);
+            Log.i("faces","card face index added: " + index);
+        }
+        Collections.shuffle(cardFaceList); //randomize order of card faces represented in the list
+        for(Button button : buttonList){
+            buttonMap.put(button, cardFaceList.remove(0)); //map each button to a card face from the list
+        }
+    }
+
     private void initCardsHandler(){
         buttonList = new ArrayList<>();
         for(int i = 0; i < numCards; i++){
             Button cardButton = initButton(i);
             buttonList.add(cardButton);
         }
+        mapCards();
     }
 
-    //Testing branching in Android Studio
+    //Method to set up a button with the proper parameters - used by initCardsHandler method
     private Button initButton(int i){
         Button cardButton = new Button(this);
         String buttonTag = "button" + i;
@@ -64,6 +117,7 @@ public class GameActivity extends AppCompatActivity {
         cardButton.setLayoutParams(params);
         cardButton.setBackgroundResource(R.drawable.cardback);
         cardButton.setTag(buttonTag);
+        cardButton.setOnClickListener(onClickFlipper(cardButton));
 
         return cardButton;
     }
@@ -96,5 +150,19 @@ public class GameActivity extends AppCompatActivity {
     public void endGameHandler() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.tryAgainButton)
+    public void tryAgainHandler() {
+        if(cardsSelected == 2){
+            cardsSelected = 0;
+            if(!lastPairMatch && (firstSelected != null) && (secondSelected != null)){
+                firstSelected.setBackgroundResource(R.drawable.cardback);
+                secondSelected.setBackgroundResource(R.drawable.cardback);
+            }
+            firstSelected = null;
+            secondSelected = null;
+            lastPairMatch = false;
+        }
     }
 }
