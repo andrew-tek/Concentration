@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
@@ -21,7 +22,7 @@ public class GameActivity extends AppCompatActivity {
 
     private int numCards;
     private List<Button> buttonList;
-    private Map<Integer, Button> buttonMap;
+    //private Map<Button, > buttonMap;
 
     @BindView(R.id.endGameButton)
     Button endGame;
@@ -45,11 +46,25 @@ public class GameActivity extends AppCompatActivity {
     private void initCardsHandler(){
         buttonList = new ArrayList<>();
         for(int i = 0; i < numCards; i++){
-            Button cardButton = new Button(this);
-            cardButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            cardButton.setBackgroundResource(R.drawable.cardback);
+            Button cardButton = initButton(i);
             buttonList.add(cardButton);
         }
+    }
+
+    private Button initButton(int i){
+        Button cardButton = new Button(this);
+        String buttonTag = "button" + i;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);//10,LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        params.setMargins(5,5,5,5);
+        if((numCards%4 == 0) || ((i != numCards-1) && (i != numCards-2))) {
+            params.weight = 1;
+        }
+        cardButton.setLayoutParams(params);
+        cardButton.setBackgroundResource(R.drawable.cardback);
+        cardButton.setTag(buttonTag);
+
+        return cardButton;
     }
 
     private void initCardView(){
