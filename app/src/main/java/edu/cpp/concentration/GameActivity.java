@@ -51,6 +51,7 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    //Testing branching in Android Studio
     private Button initButton(int i){
         Button cardButton = new Button(this);
         String buttonTag = "button" + i;
