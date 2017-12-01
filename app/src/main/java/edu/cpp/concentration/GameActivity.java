@@ -19,15 +19,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class GameActivity extends AppCompatActivity {
-    //Test Thing
+
     private int numCards;
     private List<Button> buttonList;
     private Map<Button, Integer> buttonMap;
-    private int cardsSelected;
+    private GameHandler theGame;
     private Button firstSelected;
     private Button secondSelected;
-    private boolean lastPairMatch;
-    private int score;
     private final int[] CARD_FACES = {R.drawable.anduin, R.drawable.druid, R.drawable.garrosh,
             R.drawable.guldan, R.drawable.jaina, R.drawable.lich, R.drawable.rexxar, R.drawable.thrall,
             R.drawable.uther, R.drawable.valeera};
@@ -41,13 +39,11 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         numCards = getIntent().getIntExtra("numCards", -1);
-        cardsSelected = 0;
-        score = 0;
-        lastPairMatch = false;
         if (numCards == -1) {
             Log.i("gameError", "Number of cards not properly passed! Defaulting to max cards.");
             numCards = 20;
         }
+        theGame = new GameHandler(numCards);
         initCardsHandler();
         initCardView();
         //Log.i("cards","numCards reads: " + numCards);
@@ -59,42 +55,36 @@ public class GameActivity extends AppCompatActivity {
     private View.OnClickListener onClickFlipper(final Button button)  {
         return new View.OnClickListener() {
             public void onClick(View v) {
-                if(cardsSelected == 0){
+                Log.i("cardClick","The card selected was: " + button.getTag());
+                if(theGame.getCardsSelected() == 0){
                     firstSelected = button;
-                    cardsSelected = 1;
                     button.setBackgroundResource(buttonMap.get(button));
-                }else if(cardsSelected == 1){
-                    cardsSelected = 2;
+                    theGame.selectFirstCard(buttonMap.get(button));
+                }else if(theGame.getCardsSelected() == 1){
                     secondSelected = button;
-                    if(buttonMap.get(button) == buttonMap.get(firstSelected)){
-                        score += 2;
-                        lastPairMatch = true;
-                    }else{
-                        if(score > 0){
-                            score -= 1;
-                        }
-                    }
                     button.setBackgroundResource(buttonMap.get(button));
+                    theGame.selectSecondCard(buttonMap.get(button));
+                    if(theGame.isLastPairMatch()){
+                        firstSelected.setEnabled(false);
+                        secondSelected.setEnabled(false);
+                        firstSelected = null;
+                        secondSelected = null;
+                    }
+                    if(theGame.isGameWon()){
+                        gameOver();
+                    }
                 }
             }
         };
     }
 
-    //only call after buttonList has been initialized (call initCardsHandler)
-    private void mapCards(){
-        buttonMap = new HashMap<>();
-        List<Integer> cardFaceList = new ArrayList<>();
-        for(int i = 0; i < numCards; i++){
-            int index = i/2; //integer division ensures that two copies of each card face end up in list
-            cardFaceList.add(CARD_FACES[index]);
-            Log.i("faces","card face index added: " + index);
-        }
-        Collections.shuffle(cardFaceList); //randomize order of card faces represented in the list
-        for(Button button : buttonList){
-            buttonMap.put(button, cardFaceList.remove(0)); //map each button to a card face from the list
-        }
+    private void gameOver(){
+        //placeholder - should transition to game over/high scores screen and display final score
     }
 
+
+    //Method to programatically create the proper number of card buttons for the game. Once buttons have been
+    //created, mapCards() is called to randomly map each card button to its face-value.
     private void initCardsHandler(){
         buttonList = new ArrayList<>();
         for(int i = 0; i < numCards; i++){
@@ -122,6 +112,22 @@ public class GameActivity extends AppCompatActivity {
         return cardButton;
     }
 
+    //only call after buttonList has been initialized (call initCardsHandler)
+    private void mapCards(){
+        buttonMap = new HashMap<>();
+        List<Integer> cardFaceList = new ArrayList<>();
+        for(int i = 0; i < numCards; i++){
+            int index = i/2; //integer division ensures that two copies of each card face end up in list
+            cardFaceList.add(CARD_FACES[index]);
+            Log.i("faces","card face index added: " + index);
+        }
+        Collections.shuffle(cardFaceList); //randomize order of card faces represented in the list
+        for(Button button : buttonList){
+            buttonMap.put(button, cardFaceList.remove(0)); //map each button to a card face from the list
+        }
+    }
+
+    //Method to display the programatically created cards on the screen
     private void initCardView(){
 
         for(int i = 0; i < buttonList.size(); i++){
@@ -131,6 +137,8 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    //method to get the appropriate row into which to place a button, based on how many have been placed so far.
+    //Only want a max of 4 buttons per row in portrait view.
     private LinearLayout getRow(int i){
         LinearLayout layout = findViewById(R.id.firstRow); //default to first row
         if(i >= 4 && i <= 7){ //second row indices 4 through 7
@@ -154,15 +162,15 @@ public class GameActivity extends AppCompatActivity {
 
     @OnClick(R.id.tryAgainButton)
     public void tryAgainHandler() {
-        if(cardsSelected == 2){
-            cardsSelected = 0;
-            if(!lastPairMatch && (firstSelected != null) && (secondSelected != null)){
+        if(theGame.getCardsSelected() == 2){
+
+            if(!(theGame.isLastPairMatch()) && (firstSelected != null) && (secondSelected != null)){
                 firstSelected.setBackgroundResource(R.drawable.cardback);
                 secondSelected.setBackgroundResource(R.drawable.cardback);
+                firstSelected = null;
+                secondSelected = null;
             }
-            firstSelected = null;
-            secondSelected = null;
-            lastPairMatch = false;
+            theGame.tryAgain();
         }
     }
 }
