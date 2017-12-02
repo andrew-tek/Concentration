@@ -26,9 +26,12 @@ public class GameActivity extends AppCompatActivity {
     private GameHandler theGame;
     private Button firstSelected;
     private Button secondSelected;
-    private final int[] CARD_FACES = {R.drawable.anduin, R.drawable.druid, R.drawable.garrosh,
-            R.drawable.guldan, R.drawable.jaina, R.drawable.lich, R.drawable.rexxar, R.drawable.thrall,
+    private final int[] CARD_FACES = {R.drawable.lichKing, R.drawable.anduin, R.drawable.druid, R.drawable.garrosh,
+            R.drawable.guldan, R.drawable.jaina, R.drawable.rexxar, R.drawable.thrall,
             R.drawable.uther, R.drawable.valeera};
+//    private final int[] CARD_FACES = {R.drawable.anduin, R.drawable.druid, R.drawable.garrosh,
+//            R.drawable.guldan, R.drawable.jaina, R.drawable.lich, R.drawable.rexxar, R.drawable.thrall,
+//            R.drawable.uther, R.drawable.valeera};
 
     @BindView(R.id.endGameButton)
     Button endGame;
