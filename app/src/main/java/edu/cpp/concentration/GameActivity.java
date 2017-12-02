@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class GameActivity extends AppCompatActivity {
- //test
+
     private int numCards;
     private List<Button> buttonList;
     private Map<Button, Integer> buttonMap;
@@ -29,11 +29,15 @@ public class GameActivity extends AppCompatActivity {
     private final int[] CARD_FACES = {R.drawable.anduin, R.drawable.druid, R.drawable.garrosh,
             R.drawable.guldan, R.drawable.jaina, R.drawable.lich, R.drawable.rexxar, R.drawable.thrall,
             R.drawable.uther, R.drawable.valeera};
+    private final String BUTTON_LIST_TAG = "ButtonList";
+    private final String BUTTON_MAP_TAG = "ButtonMap";
+    private final String THE_GAME_TAG = "TheGame";
 
     @BindView(R.id.endGameButton)
     Button endGame;
     @BindView(R.id.tryAgainButton)
     Button tryAgain;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +47,16 @@ public class GameActivity extends AppCompatActivity {
             Log.i("gameError", "Number of cards not properly passed! Defaulting to max cards.");
             numCards = 20;
         }
-        theGame = new GameHandler(numCards);
-        initCardsHandler();
+
+        if(savedInstanceState == null){
+            Log.i("testing", "savedInstanceState was null!");
+            theGame = new GameHandler(numCards);
+            initCardsHandler();
+        }else{
+            Log.i("testing", "savedInstanceState was NOT null!");
+            Log.i("testing", "theGame score is currently: " + theGame.getScore());
+        }
+
         initCardView();
         //Log.i("cards","numCards reads: " + numCards);
 
@@ -52,6 +64,49 @@ public class GameActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(BUTTON_LIST_TAG, (ArrayList)buttonList);
+        outState.putSerializable(BUTTON_MAP_TAG, (HashMap)buttonMap);
+    }
+
+
+    private void gameOver(){
+        //placeholder - should transition to game over/high scores screen and display final score
+    }
+
+
+    //Method to programatically create the proper number of card buttons for the game. Once buttons have been
+    //created, mapCards() is called to randomly map each card button to its face-value.
+    private void initCardsHandler(){
+        buttonList = new ArrayList<>();
+        for(int i = 0; i < numCards; i++){
+            Button cardButton = initButton(i);
+            buttonList.add(cardButton);
+        }
+        mapCards();
+    }
+
+    //Method to set up a button with the proper parameters - used by initCardsHandler method
+    private Button initButton(int i){
+        Button cardButton = new Button(this);
+        String buttonTag = "button" + i;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        params.setMargins(5,5,5,5);
+        if((numCards%4 == 0) || ((i != numCards-1) && (i != numCards-2))) {
+            params.weight = 1;
+        }
+        cardButton.setLayoutParams(params);
+        cardButton.setBackgroundResource(R.drawable.cardback);
+        cardButton.setTag(buttonTag);
+        cardButton.setOnClickListener(onClickFlipper(cardButton));
+
+        return cardButton;
+    }
+
+    //Custom click listener to be assigned to each of the "card" buttons in the game
     private View.OnClickListener onClickFlipper(final Button button)  {
         return new View.OnClickListener() {
             public void onClick(View v) {
@@ -76,40 +131,6 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         };
-    }
-
-    private void gameOver(){
-        //placeholder - should transition to game over/high scores screen and display final score
-    }
-
-
-    //Method to programatically create the proper number of card buttons for the game. Once buttons have been
-    //created, mapCards() is called to randomly map each card button to its face-value.
-    private void initCardsHandler(){
-        buttonList = new ArrayList<>();
-        for(int i = 0; i < numCards; i++){
-            Button cardButton = initButton(i);
-            buttonList.add(cardButton);
-        }
-        mapCards();
-    }
-
-    //Method to set up a button with the proper parameters - used by initCardsHandler method
-    private Button initButton(int i){
-        Button cardButton = new Button(this);
-        String buttonTag = "button" + i;
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);//10,LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        params.setMargins(5,5,5,5);
-        if((numCards%4 == 0) || ((i != numCards-1) && (i != numCards-2))) {
-            params.weight = 1;
-        }
-        cardButton.setLayoutParams(params);
-        cardButton.setBackgroundResource(R.drawable.cardback);
-        cardButton.setTag(buttonTag);
-        cardButton.setOnClickListener(onClickFlipper(cardButton));
-
-        return cardButton;
     }
 
     //only call after buttonList has been initialized (call initCardsHandler)
