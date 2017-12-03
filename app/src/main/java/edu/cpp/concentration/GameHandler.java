@@ -73,7 +73,7 @@ public class GameHandler {
             cardsSelected = 0;
             firstSelectedValue = 0;
             secondSelectedValue = 0;
-            //lastPairMatch = false;
+            lastPairMatch = false;
         }else{
             Log.i("game", "The game has either been won, or the proper number of cards has not been selected yet. No action taken.");
         }
