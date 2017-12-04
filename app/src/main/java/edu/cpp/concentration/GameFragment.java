@@ -10,12 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import butterknife.BindView;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
@@ -30,6 +33,7 @@ public class GameFragment extends Fragment {
     private Button firstSelected;
     private Button secondSelected;
     private View thisFragmentView;
+    private TextView score;
     private final int[] CARD_FACES = {R.drawable.anduin, R.drawable.druid, R.drawable.garrosh,
             R.drawable.guldan, R.drawable.jaina, R.drawable.lich, R.drawable.rexxar, R.drawable.thrall,
             R.drawable.uther, R.drawable.valeera};
@@ -49,8 +53,10 @@ public class GameFragment extends Fragment {
         theGame = new GameHandler(numCards);
         initCardsHandler();
 
-        Log.w("hello", "onCreate: DAMNIT");
+        score = getActivity().findViewById(R.id.scoreTextView);
+        score.setText("Score: fragment" + theGame.getScore());
 
+        Log.w("hello", "onCreate: DAMNIT");
     }
 
     //this runs each time the fragment is handled - in other words, first when it is initialized, and then every time the
@@ -64,7 +70,7 @@ public class GameFragment extends Fragment {
             clearCardView();
         }
         initCardView();
-
+        score.setText("Score: fragment" + theGame.getScore());
         return thisFragmentView;
     }
 
@@ -122,6 +128,7 @@ public class GameFragment extends Fragment {
                         gameOver();
                     }
                 }
+                score.setText("Score: " + theGame.getScore());
             }
         };
     }

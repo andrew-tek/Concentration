@@ -4,6 +4,14 @@
     android:layout_margin="10sp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/scoreTextView"
+        android:text="Score: 0"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
     <!--<fragment -->
         <!--android:name="edu.cpp.concentration.GameFragment"-->
         <!--android:id="@+id/game_fragment"-->
