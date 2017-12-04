@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,7 +37,7 @@ public class HighScoreActivity extends AppCompatActivity {
 
     private int numberofCards;
     private String filename;
-    private ArrayList<Score> scoresList;
+    private List<Score> scoresList;
 
 
 
@@ -46,7 +47,7 @@ public class HighScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_highscore);
         ButterKnife.bind(this);
 
-        scoresList = new ArrayList<Score>();
+        scoresList = new ArrayList<>();
 
         numberPicker = findViewById(R.id.numberPickerHighScore);
         numberofCards = getIntent().getIntExtra("numCards", -1);
@@ -79,6 +80,7 @@ public class HighScoreActivity extends AppCompatActivity {
 
     private void displayScores(String highScoreList) {
         try {
+            Log.i("displayScores", "Hello from displayScores! This is the start of the method!");
             FileInputStream fis = openFileInput(highScoreList);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
@@ -89,6 +91,7 @@ public class HighScoreActivity extends AppCompatActivity {
             int score;
 
             while ((line = br.readLine()) != null) {
+                Log.i("displayScores", "Hello from displayScores! Building scoresList!");
                 info = line.split(" ");
 
                 name = info[0];

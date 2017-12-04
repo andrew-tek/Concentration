@@ -76,6 +76,10 @@ public class GameOverActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 
 
     private void isHighScore() {
@@ -125,8 +129,11 @@ public class GameOverActivity extends AppCompatActivity {
                         bw.write(scoresList.get(i).getName() + " " + scoresList.get(i).getScore() + "\n");
                         Log.i("NAME WRITTEN: ", scoresList.get(i).getName());
                     }
-                    os.close();
+                    os.flush();
+                    bw.flush();
                     bw.close();
+                    os.close();
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
