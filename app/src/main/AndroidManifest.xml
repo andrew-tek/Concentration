@@ -9,17 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InfoActivity"></activity>
-        <activity android:name=".GameActivity"></activity>
-        <activity android:name=".HighScoreInfoActivity"></activity>
-        <activity android:name=".HighScoreActivity"></activity>
+        <activity
+            android:name=".InfoActivity"
+            android:parentActivityName="edu.cpp.concentration.MainActivity"></activity>
+        <activity
+            android:name=".GameActivity"
+            android:parentActivityName="edu.cpp.concentration.MainActivity"></activity>
+        <activity
+            android:name=".HighScoreInfoActivity"
+            android:parentActivityName="edu.cpp.concentration.MainActivity"></activity>
+        <activity
+            android:name=".HighScoreActivity"
+            android:parentActivityName="edu.cpp.concentration.HighScoreInfoActivity"></activity>
 
     </application>
 

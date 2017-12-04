@@ -1,9 +1,11 @@
 package edu.cpp.concentration;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.NumberPicker;
 
@@ -15,6 +17,7 @@ public class HighScoreInfoActivity extends AppCompatActivity {
     NumberPicker numberPicker;
     @BindView(R.id.submitButtonHighScore)
     Button submitButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +27,10 @@ public class HighScoreInfoActivity extends AppCompatActivity {
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(values.length - 1);
         numberPicker.setDisplayedValues(values);
+        getSupportActionBar().setHomeButtonEnabled(true); //ancestral navigation button
         ButterKnife.bind(this);
     }
+
     @OnClick(R.id.submitButtonHighScore)
     public void moveToHighScoreScreen() {
         Intent intent = new Intent(this, HighScoreActivity.class);
@@ -33,5 +38,17 @@ public class HighScoreInfoActivity extends AppCompatActivity {
         Log.i("toPass","cards selected reads: " + numCardsSelected);
         intent.putExtra("numCards", numCardsSelected);
         startActivity(intent);
+    }
+
+    //method to handle the tapping of the "up" button for ancestral navigation
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
