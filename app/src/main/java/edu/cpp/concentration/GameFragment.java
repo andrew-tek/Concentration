@@ -171,6 +171,13 @@ public class GameFragment extends Fragment {
         }
     }
 
+    public Map<Button, Integer> getButtonMap() {
+        return buttonMap;
+    }
+    public List<Button> getButtonList() {
+        return buttonList;
+    }
+
     //method to get the appropriate row into which to place a button, based on how many have been placed so far.
     //Only want a max of 4 buttons per row in portrait view.
     private LinearLayout getRow(int i){

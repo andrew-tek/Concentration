@@ -2,6 +2,7 @@ package edu.cpp.concentration;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
@@ -11,6 +12,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +34,8 @@ public class GameActivity extends AppCompatActivity {
     Button endGame;
     @BindView(R.id.tryAgainButton)
     Button tryAgain;
+    @BindView(R.id.newGameButton)
+    Button newGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +94,27 @@ public class GameActivity extends AppCompatActivity {
 
     @OnClick(R.id.endGameButton)
     public void endGameHandler() {
-        Intent intent = new Intent(this, MainActivity.class);
+        toggleMusic.setEnabled(false);
+        endGame.setEnabled(false);
+        newGame.setEnabled(false);
+        tryAgain.setEnabled(false);
+        Map<Button, Integer> buttonMap = theGameFragment.getButtonMap();
+        for (Button imageButton : theGameFragment.getButtonList()) {
+            imageButton.setBackgroundResource(buttonMap.get(imageButton));
+            imageButton.setEnabled(false);
+        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                moveToMainActivity();
+            }
+        }, 8000);
+    }
+
+    @OnClick(R.id.newGameButton)
+    public void newGameButton() {
+        Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
     }
 
@@ -124,5 +149,10 @@ public class GameActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void moveToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
