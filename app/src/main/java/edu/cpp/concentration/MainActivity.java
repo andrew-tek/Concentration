@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setHomeButtonEnabled(false); //ancestral navigation button
+        highScoreFileToMemory();
         ButterKnife.bind(this);
     }
 
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     FileOutputStream fos = openFileOutput(appendedFilename, Context.MODE_PRIVATE);
                     fos.write(loadFile(appendedFilename).getBytes());
                     fos.close();
+                    Log.i("Writing file: ", appendedFilename);
                 }
                 else {
                     // File exists
