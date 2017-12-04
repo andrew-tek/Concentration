@@ -26,7 +26,7 @@ public class InfoActivity extends AppCompatActivity {
         numberPicker.setDisplayedValues(values);
         ButterKnife.bind(this);
     }
-
+//test
     @OnClick(R.id.submitButton)
     public void moveToGameActivity() {
         //Bundle bundle = new Bundle();
