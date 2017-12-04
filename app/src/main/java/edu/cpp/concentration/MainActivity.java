@@ -1,11 +1,11 @@
 package edu.cpp.concentration;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
+import android.util.Log;
+import android.content.Context;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        highScoreFileToMemory();
+        getSupportActionBar().setHomeButtonEnabled(false); //ancestral navigation button
         ButterKnife.bind(this);
     }
 

@@ -1,6 +1,8 @@
 package edu.cpp.concentration;
 
-
+/**
+ * This class allows for storing "Score" objects containing the name and score of a player.
+ */
 
 public class Score {
 
