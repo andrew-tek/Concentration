@@ -1,6 +1,7 @@
 package edu.cpp.concentration;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(false); //ancestral navigation button
         highScoreFileToMemory();
         ButterKnife.bind(this);
+//        Context context = this;
+//        MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.mario_song);
+//        mediaPlayer.start();
+
     }
 
     @OnClick(R.id.startGameButton)
