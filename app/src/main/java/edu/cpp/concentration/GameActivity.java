@@ -45,7 +45,7 @@ public class GameActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         theGameFragment = (GameFragment) fragmentManager.findFragmentByTag(SAVED_FRAGMENT_TAG);
-        musicFragment = (MusicFragment) fragmentManager.findFragmentByTag(SAVED_FRAGMENT_TAG);
+        musicFragment = (MusicFragment) fragmentManager.findFragmentByTag(SAVED_MUSIC_FRAGMENT_TAG);
 
         if (theGameFragment == null) {
             Bundle myBundle = new Bundle();
