@@ -71,11 +71,21 @@ public class GameActivity extends AppCompatActivity {
             }
         }
 
-
         getSupportActionBar().setHomeButtonEnabled(true); //ancestral navigation button
 
         ButterKnife.bind(this);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(musicFragment.getMediaPlayer().isPlaying()){
+            toggleMusic.setText("Turn Music Off");
+        }else{
+            toggleMusic.setText("Turn Music On");
+        }
+    }
+
 
     @OnClick(R.id.endGameButton)
     public void endGameHandler() {
@@ -88,16 +98,19 @@ public class GameActivity extends AppCompatActivity {
         theGameFragment.tryAgainHandler();
 
     }
+
     @OnClick(R.id.toggleMusicButton)
     public void toggleMusic() {
         MediaPlayer mediaPlayer = musicFragment.getMediaPlayer();
         if (mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             toggleMusic.setText("Turn Music On");
+            musicFragment.setWasPlaying(false);
         }
         else {
             mediaPlayer.start();
             toggleMusic.setText("Turn Music Off");
+            musicFragment.setWasPlaying(true);
         }
     }
 

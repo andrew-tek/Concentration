@@ -22,13 +22,14 @@ public class MusicFragment extends Fragment {
 
     MediaPlayer mediaPlayer;
     private View thisFragmentView;
-    Button musicToggle;
+    private boolean wasPlaying;
 
     //runs once, when the fragment is created
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        wasPlaying = true;
     }
 
     //runs every time the fragment is reinitialized on state-change (including the very first time)
@@ -36,10 +37,14 @@ public class MusicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View thisFragmentView = inflater.inflate(R.layout.fragment_music, container, false);
-        playMusic();
-        if(musicToggle == null) {
-            musicToggle = (Button) thisFragmentView.findViewById(R.id.toggleMusicButton);
+        if(mediaPlayer == null) {
+            mediaPlayer = MediaPlayer.create(getActivity(), R.raw.mario_song);
+            mediaPlayer.setLooping(true);
         }
+        if(wasPlaying){
+            playMusic();
+        }
+
         return thisFragmentView;
     }
 
@@ -59,11 +64,7 @@ public class MusicFragment extends Fragment {
     }
 
     private void playMusic(){
-        if(mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(getActivity(), R.raw.mario_song);
-        }
         if(!mediaPlayer.isPlaying()){
-            mediaPlayer.setLooping(true);
             mediaPlayer.start();
         }
     }
@@ -80,6 +81,7 @@ public class MusicFragment extends Fragment {
 
     private void pauseMusic(){
         if(mediaPlayer!= null && mediaPlayer.isPlaying()){
+            wasPlaying = true;
             mediaPlayer.pause();
         }
     }
@@ -87,6 +89,10 @@ public class MusicFragment extends Fragment {
 
     public MediaPlayer getMediaPlayer() {
         return mediaPlayer;
+    }
+
+    public void setWasPlaying(boolean playing){
+        wasPlaying = playing;
     }
 
 }
