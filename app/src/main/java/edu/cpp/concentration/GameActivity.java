@@ -48,6 +48,7 @@ public class GameActivity extends AppCompatActivity {
             theGameFragment = new GameFragment();
             theGameFragment.setArguments(myBundle);
             fragmentTransaction.add(R.id.fragment_container, theGameFragment, SAVED_FRAGMENT_TAG);
+            //music fragment
             fragmentTransaction.commit();
         }
         while (theGameFragment == null) {

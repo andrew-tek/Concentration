@@ -53,8 +53,8 @@ public class GameFragment extends Fragment {
         theGame = new GameHandler(numCards);
         initCardsHandler();
 
-        score = getActivity().findViewById(R.id.scoreTextView);
-        score.setText("Score: fragment" + theGame.getScore());
+
+
 
         Log.w("hello", "onCreate: DAMNIT");
     }
@@ -65,12 +65,14 @@ public class GameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        score = getActivity().findViewById(R.id.scoreTextView);
+        score.setText("Score: fragment" + theGame.getScore());
         thisFragmentView = inflater.inflate(R.layout.fragment_game, container, false);
         if(savedInstanceState != null){
             clearCardView();
         }
         initCardView();
-        score.setText("Score: fragment" + theGame.getScore());
+        score.setText("Score: " + theGame.getScore());
         return thisFragmentView;
     }
 
