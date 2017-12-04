@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.startGameButton)
     Button startGame;
+    @BindView(R.id.highScoreButton)
+    Button highScore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,4 +27,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
     }
+    @OnClick(R.id.highScoreButton)
+    public void changeScreenToHighScoreInfo() {
+        Intent intent = new Intent (this, HighScoreInfoActivity.class);
+        startActivity(intent);
+    }
+
 }
