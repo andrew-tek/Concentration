@@ -20,7 +20,7 @@ public class HighScoreInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore_info);
         numberPicker = findViewById(R.id.numberPickerHighScore);
-        String[] values = {"4", "6", "8", "10", "12", "14", "16", "18", "20"};
+        String [] values = {"4", "6", "8", "10", "12", "14", "16", "18", "20"};
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(values.length - 1);
         numberPicker.setDisplayedValues(values);
