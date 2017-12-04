@@ -17,21 +17,17 @@ public class HighScoreInfoActivity extends AppCompatActivity {
     NumberPicker numberPicker;
     @BindView(R.id.submitButtonHighScore)
     Button submitButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore_info);
         numberPicker = findViewById(R.id.numberPickerHighScore);
-        String [] values = {"4", "6", "8", "10", "12", "14", "16", "18", "20"};
+        String[] values = {"4", "6", "8", "10", "12", "14", "16", "18", "20"};
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(values.length - 1);
         numberPicker.setDisplayedValues(values);
-        getSupportActionBar().setHomeButtonEnabled(true); //ancestral navigation button
         ButterKnife.bind(this);
     }
-
-
     @OnClick(R.id.submitButtonHighScore)
     public void moveToHighScoreScreen() {
         Intent intent = new Intent(this, HighScoreActivity.class);
@@ -40,6 +36,7 @@ public class HighScoreInfoActivity extends AppCompatActivity {
         intent.putExtra("numCards", numCardsSelected);
         startActivity(intent);
     }
+
 
     //method to handle the tapping of the "up" button for ancestral navigation
     @Override
@@ -52,5 +49,7 @@ public class HighScoreInfoActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }
