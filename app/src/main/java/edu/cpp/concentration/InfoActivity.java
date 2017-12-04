@@ -1,11 +1,17 @@
 package edu.cpp.concentration;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.NumberPicker;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +31,7 @@ public class InfoActivity extends AppCompatActivity {
         numberPicker.setMaxValue(values.length - 1);
         numberPicker.setDisplayedValues(values);
         ButterKnife.bind(this);
+
     }
 
     @OnClick(R.id.submitButton)
@@ -37,5 +44,6 @@ public class InfoActivity extends AppCompatActivity {
         intent.putExtra("numCards", numCardsSelected);
         startActivity(intent);
     }
+
 
 }
