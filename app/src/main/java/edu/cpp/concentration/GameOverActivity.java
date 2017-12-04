@@ -113,6 +113,13 @@ public class GameOverActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     String input = nameSubmit.getText().toString();
+                    // ADD ERASURE OF LAST NODE
+//                    while(highScores.size() > 4){
+//                        highScores.remove((highScores.size()-1));
+//                    }
+//
+//                    highScores.add(score);
+
                     scoresList.add(new Score(input, score));
                     CompareScore comparator = new CompareScore();
                     Collections.sort(scoresList, comparator);
@@ -146,7 +153,7 @@ public class GameOverActivity extends AppCompatActivity {
         else {
             askForScore.setVisibility(View.GONE);
             nameSubmit.setVisibility(View.GONE);
-            nameSubmit.setVisibility(View.GONE);
+            submitScore.setVisibility(View.GONE);
         }
     }
 
