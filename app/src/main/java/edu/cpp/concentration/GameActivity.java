@@ -1,6 +1,7 @@
 package edu.cpp.concentration;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
@@ -19,9 +20,13 @@ public class GameActivity extends AppCompatActivity {
 
     private int numCards;
     private GameFragment theGameFragment;
+    private MusicFragment musicFragment;
     private final String SAVED_FRAGMENT_TAG = "theGameFragment";
+    private final String SAVED_MUSIC_FRAGMENT_TAG = "thisMusicFragment";
 
     TextView score;
+    @BindView(R.id.toggleMusicButton)
+    Button toggleMusic;
     @BindView(R.id.endGameButton)
     Button endGame;
     @BindView(R.id.tryAgainButton)
@@ -40,6 +45,7 @@ public class GameActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         theGameFragment = (GameFragment) fragmentManager.findFragmentByTag(SAVED_FRAGMENT_TAG);
+        musicFragment = (MusicFragment) fragmentManager.findFragmentByTag(SAVED_FRAGMENT_TAG);
 
         if (theGameFragment == null) {
             Bundle myBundle = new Bundle();
@@ -48,8 +54,14 @@ public class GameActivity extends AppCompatActivity {
             theGameFragment = new GameFragment();
             theGameFragment.setArguments(myBundle);
             fragmentTransaction.add(R.id.fragment_container, theGameFragment, SAVED_FRAGMENT_TAG);
-            //music fragment
+            //MusicFragment fragment
             fragmentTransaction.commit();
+        }
+        if (musicFragment == null) {
+            FragmentTransaction musicTransaction = fragmentManager.beginTransaction();
+            musicFragment = new MusicFragment();
+            musicTransaction.add(R.id.music_fragment_container, musicFragment, SAVED_MUSIC_FRAGMENT_TAG);
+            musicTransaction.commit();
         }
         while (theGameFragment == null) {
             try {
@@ -75,6 +87,18 @@ public class GameActivity extends AppCompatActivity {
     public void tryAgainHandler() {
         theGameFragment.tryAgainHandler();
 
+    }
+    @OnClick(R.id.toggleMusicButton)
+    public void toggleMusic() {
+        MediaPlayer mediaPlayer = musicFragment.getMediaPlayer();
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+            toggleMusic.setText("Turn Music On");
+        }
+        else {
+            mediaPlayer.start();
+            toggleMusic.setText("Turn Music Off");
+        }
     }
 
     //method to handle the tapping of the "up" button for ancestral navigation
