@@ -57,7 +57,6 @@ public class HighScoreActivity extends AppCompatActivity {
         Log.i("Filename", filename);
 
         displayScores(filename);
-
     }
 
     @OnClick (R.id.highScoreBackButton)
@@ -80,7 +79,6 @@ public class HighScoreActivity extends AppCompatActivity {
 
     private void displayScores(String highScoreList) {
         try {
-
             FileInputStream fis = openFileInput(highScoreList);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
@@ -100,8 +98,10 @@ public class HighScoreActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Log.i("Name Player 1: ", scoresList.get(0).getName() + " " + scoresList.get(0).getScore());
         playerOne.setText("1. " + scoresList.get(0).getName() + ": " + scoresList.get(0).getScore());
         playerTwo.setText("2. " + scoresList.get(1).getName() + ": " + scoresList.get(1).getScore());
         playerThree.setText("3. " + scoresList.get(2).getName() + ": " + scoresList.get(2).getScore());
     }
+
 }
