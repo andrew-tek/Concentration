@@ -31,6 +31,7 @@ public class HighScoreInfoActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+
     @OnClick(R.id.submitButtonHighScore)
     public void moveToHighScoreScreen() {
         Intent intent = new Intent(this, HighScoreActivity.class);
@@ -51,4 +52,5 @@ public class HighScoreInfoActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

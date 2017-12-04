@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -64,6 +63,7 @@ public class GameActivity extends AppCompatActivity {
     @OnClick(R.id.tryAgainButton)
     public void tryAgainHandler() {
         theGameFragment.tryAgainHandler();
+
     }
 
     //method to handle the tapping of the "up" button for ancestral navigation
