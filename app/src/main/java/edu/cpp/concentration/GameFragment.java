@@ -102,9 +102,10 @@ public class GameFragment extends Fragment {
         cardButton.setLayoutParams(params);
         cardButton.setBackgroundResource(R.drawable.cardback);
         cardButton.setTag(buttonTag);
-        cardButton.setGravity(Gravity.CENTER);
+//        cardButton.setGravity(Gravity.CENTER);
         cardButton.setOnClickListener(onClickFlipper(cardButton));
-
+        cardButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
         return cardButton;
     }
 
