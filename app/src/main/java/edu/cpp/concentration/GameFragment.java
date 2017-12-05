@@ -227,7 +227,8 @@ public class GameFragment extends Fragment {
         return layout;
     }
 
-
+    // method: gameOver
+    // purpose: transition to GameOverActivity, sending the info. of user score and difficulty played
     private void gameOver(){
         Intent gameOverIntent = new Intent(getActivity(), GameOverActivity.class);
         int finalScore = theGame.getScore();

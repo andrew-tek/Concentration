@@ -13,6 +13,11 @@
  *************************************************************** */
 package edu.cpp.concentration;
 
+/**
+ * This activity is displayed to prompt the user for a difficulty, and then it displays the top
+ * 3 high scores of that difficulty.
+ */
+
 import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -27,9 +32,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HighScoreInfoActivity extends AppCompatActivity {
+    // Scroll wheel for number of cards (4-20, evens)
     NumberPicker numberPicker;
+    // Button to submit numberPicker number
     @BindView(R.id.submitButtonHighScore)
     Button submitButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +50,9 @@ public class HighScoreInfoActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-
+    // method: moveToHighScoreScreen
+    // purpose: button listener; if clicked, get number of cards (difficulty), and pass to
+    //          HighScoreActivity and then switch to that activity
     @OnClick(R.id.submitButtonHighScore)
     public void moveToHighScoreScreen() {
         Intent intent = new Intent(this, HighScoreActivity.class);
@@ -52,8 +62,8 @@ public class HighScoreInfoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-    //method to handle the tapping of the "up" button for ancestral navigation
+    // method: opOptionsItemSelected
+    // purpose: method to handle the tapping of the "up" button for ancestral navigation
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -64,7 +74,4 @@ public class HighScoreInfoActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
 }
