@@ -80,7 +80,7 @@ public class GameActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
     }
-
+    //Will resume on rotate and set the appropriate text for thr button
     @Override
     protected void onResume() {
         super.onResume();
@@ -92,6 +92,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
+    //Disable all buttons, flip over all cards for 8 seconds then return to main activity screen
     @OnClick(R.id.endGameButton)
     public void endGameHandler() {
         //toggleMusic.setEnabled(false);
@@ -112,18 +113,21 @@ public class GameActivity extends AppCompatActivity {
         }, 5000);
     }
 
+    //Button on click will move to InfoActivity class
     @OnClick(R.id.newGameButton)
     public void newGameButton() {
         Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
     }
 
+    //Call method that will flip over the two cards and deduct points
     @OnClick(R.id.tryAgainButton)
     public void tryAgainHandler() {
         theGameFragment.tryAgainHandler();
 
     }
 
+    //Play music and set appropriate text for the button
     @OnClick(R.id.toggleMusicButton)
     public void toggleMusic() {
         MediaPlayer mediaPlayer = musicFragment.getMediaPlayer();
@@ -151,6 +155,7 @@ public class GameActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Will move screen to main activity
     public void moveToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

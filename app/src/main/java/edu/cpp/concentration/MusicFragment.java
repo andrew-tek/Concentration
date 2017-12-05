@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 
+
 public class MusicFragment extends Fragment {
 
     MediaPlayer mediaPlayer;
@@ -47,6 +48,7 @@ public class MusicFragment extends Fragment {
         return thisFragmentView;
     }
 
+    //when called will pause the media player
     @Override
     public void onPause() {
         super.onPause();
@@ -62,12 +64,14 @@ public class MusicFragment extends Fragment {
         Log.i("DESTROY", "Hello from onDestroy!");
     }
 
+    //When called will play the music
     private void playMusic(){
         if(!mediaPlayer.isPlaying()){
             mediaPlayer.start();
         }
     }
 
+    //When called will stop music
     private void stopMusic(){
         if(mediaPlayer!= null){
             if(mediaPlayer.isPlaying()){
@@ -78,6 +82,7 @@ public class MusicFragment extends Fragment {
         }
     }
 
+    //If music is playing will pause song
     private void pauseMusic(){
         if(mediaPlayer!= null && mediaPlayer.isPlaying()){
             wasPlaying = true;
