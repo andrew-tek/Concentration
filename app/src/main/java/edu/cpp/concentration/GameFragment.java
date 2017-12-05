@@ -31,10 +31,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
-
 
 public class GameFragment extends Fragment {
 
@@ -66,8 +64,9 @@ public class GameFragment extends Fragment {
         initCardsHandler();
     }
 
-    //this runs each time the fragment is handled - in other words, first when it is initialized, and then every time the
-    //state changes (such as a rotation)
+    // method: onCreateView
+    // purpose: this runs each time the fragment is handled - in other words, first when it is initialized, and then every time the
+    //          state changes (such as a rotation)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,9 +82,9 @@ public class GameFragment extends Fragment {
         return thisFragmentView;
     }
 
-
-    //Method to programatically create the proper number of card buttons for the game. Once buttons have been
-    //created, mapCards() is called to randomly map each card button to its face-value.
+    // method: initCardsHandler
+    // purpose: method to programatically create the proper number of card buttons for the game. Once buttons have been
+    //          created, mapCards() is called to randomly map each card button to its face-value.
     private void initCardsHandler(){
         buttonList = new ArrayList<>();
         for(int i = 0; i < numCards; i++){
@@ -95,7 +94,8 @@ public class GameFragment extends Fragment {
         mapCards();
     }
 
-    //Method to set up a button with the proper parameters - used by initCardsHandler method
+    // method: initButton
+    // purpose: method to set up a button with the proper parameters - used by initCardsHandler method
     private Button initButton(int i){
         Button cardButton = new Button(getActivity());
         String buttonTag = "button" + i;
@@ -109,7 +109,8 @@ public class GameFragment extends Fragment {
         return cardButton;
     }
 
-    //Custom click listener to be assigned to each of the "card" buttons in the game
+    // method: onClickFlipper
+    // purpose: custom click listener to be assigned to each of the "card" buttons in the game
     private View.OnClickListener onClickFlipper(final Button button)  {
         return new View.OnClickListener() {
             public void onClick(View v) {
@@ -137,7 +138,8 @@ public class GameFragment extends Fragment {
         };
     }
 
-    //only call after buttonList has been initialized (call initCardsHandler)
+    // method mapCards
+    // purpose: method that only calls after buttonList has been initialized (call initCardsHandler)
     private void mapCards(){
         buttonMap = new HashMap<>();
         List<Integer> cardFaceList = new ArrayList<>();
@@ -152,7 +154,8 @@ public class GameFragment extends Fragment {
         }
     }
 
-    //Method to display the programatically created cards on the screen
+    // method: initCardView
+    // purpose: method to display the programatically created cards on the screen
     private void initCardView(){
         boolean portraitFlag = true;
         if(getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE) {
@@ -167,6 +170,8 @@ public class GameFragment extends Fragment {
 
     }
 
+    // method: setWeight
+    // purpose:
     private void setWeight(int i, boolean portraitFlag){
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)buttonList.get(i).getLayoutParams();
         int lastRowSize;
@@ -184,9 +189,8 @@ public class GameFragment extends Fragment {
 
     }
 
-
-
-    //Method to clear button associations to prior layouts so that they can be re-placed (for rotation)
+    // method: clearCardView
+    // purpose: method to clear button associations to prior layouts so that they can be re-placed (for rotation)
     private void clearCardView(){
         for(Button button : buttonList) {
             if (button.getParent() != null) {
@@ -202,8 +206,9 @@ public class GameFragment extends Fragment {
         return buttonList;
     }
 
-    //method to get the appropriate row into which to place a button, based on how many have been placed so far.
-    //Only want a max of 4 buttons per row in portrait view.
+    // method: getRow
+    //  purpose: method to get the appropriate row into which to place a button, based on how many have been placed so far.
+    //           Only want a max of 4 buttons per row in portrait view.
     private LinearLayout getRow(int i){
         LinearLayout layout = thisFragmentView.findViewById(R.id.firstRow); //default to first row
         if(getResources().getConfiguration().orientation != ORIENTATION_LANDSCAPE) {
@@ -243,6 +248,8 @@ public class GameFragment extends Fragment {
         return theGame;
     }
 
+    // method: tryAgainHandler
+    // purpose:
     public void tryAgainHandler(){
         if(theGame.getCardsSelected() == 2){
 

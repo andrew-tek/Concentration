@@ -7,16 +7,11 @@
  * date last modified: 12/04/2017
  *
  * purpose: Handles ending a game, including checking player score, displaying final score,
- * gathering user name if they have a high score, and writing to the high-score files.
+ *          gathering user name if they have a high score, and writing to the high-score files so that
+ *          HighScoreActivity may use it.
  *
  *************************************************************** */
 package edu.cpp.concentration;
-
-/**
- * This activity is opened after a game is won. It deals with displaying a user's score
- * or asks for their name if it happens to be a high score. It sends that information to
- * a file for the HighScoreActivity to use.
- */
 
 import android.content.Intent;
 import android.os.Environment;

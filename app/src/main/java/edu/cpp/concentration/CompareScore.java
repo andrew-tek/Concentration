@@ -6,15 +6,11 @@
  * assignment: Android App - Concentration
  * date last modified: 12/04/2017
  *
- * purpose: Handles score comparison
+ * purpose: This class allows for the comparison of two Scores so that the program may
+ *          later sort the list of Scores.
  *
  ****************************************************************/
 package edu.cpp.concentration;
-
-/**
- * This class allows for the comparison of two Scores so that the program may
- * later sort the list of Scores.
- */
 
 import java.util.Comparator;
 

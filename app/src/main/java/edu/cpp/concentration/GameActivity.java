@@ -7,7 +7,7 @@
  * date last modified: 12/04/2017
  *
  * purpose: Handles the main Concentration game and related fragments (the game and music fragments).
- * Also manages button clicks for New Game, End Game, Try Again, and Toggle Music buttons.
+ *          Also manages button clicks for New Game, End Game, Try Again, and Toggle Music buttons.
  *
  *************************************************************** */
 package edu.cpp.concentration;

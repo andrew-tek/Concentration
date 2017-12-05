@@ -44,7 +44,8 @@ public class InfoActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    //Will move to gameScreen and send the number of cards desired to the next activity
+    // method: moveToGameActivity
+    // purpose: will move to gameScreen and send the number of cards desired to the next activity
     @OnClick(R.id.submitButton)
     public void moveToGameActivity() {
         Intent intent = new Intent(this, GameActivity.class);
@@ -54,7 +55,8 @@ public class InfoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //method to handle the tapping of the "up" button for ancestral navigation
+    // method: onOptionsItemSelected
+    // purpose: method to handle the tapping of the "up" button for ancestral navigation
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

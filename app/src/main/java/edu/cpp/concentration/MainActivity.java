@@ -44,14 +44,16 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    //Move intent to info activity
+    // method: changeSCreenToActivityInfo
+    // purpose: button listener to move to InfoActivity
     @OnClick(R.id.startGameButton)
     public void changeScreenToActivityInfo() {
         Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
     }
 
-    //move intent to highscore activity
+    // method: changeScreenToHighScoreInfo
+    // purpose: move intent to highscore activity
     @OnClick(R.id.highScoreButton)
     public void changeScreenToHighScoreInfo() {
         Intent intent = new Intent (this, HighScoreInfoActivity.class);
