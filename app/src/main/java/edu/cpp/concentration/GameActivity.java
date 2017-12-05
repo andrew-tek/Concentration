@@ -49,6 +49,10 @@ public class GameActivity extends AppCompatActivity {
     @BindView(R.id.newGameButton)
     Button newGame;
 
+    // method: onCreate
+    // purpose: Builds the activity. Runs every time the activity is created or recreated, so local variables are
+    //set here, including the getting of fragments from the fragment manager, or the instantiation of those
+    //fragments if necessary.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,10 +65,10 @@ public class GameActivity extends AppCompatActivity {
         }
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        theGameFragment = (GameFragment) fragmentManager.findFragmentByTag(SAVED_FRAGMENT_TAG);
-        musicFragment = (MusicFragment) fragmentManager.findFragmentByTag(SAVED_MUSIC_FRAGMENT_TAG);
+        theGameFragment = (GameFragment) fragmentManager.findFragmentByTag(SAVED_FRAGMENT_TAG); //handles game display
+        musicFragment = (MusicFragment) fragmentManager.findFragmentByTag(SAVED_MUSIC_FRAGMENT_TAG); //handles music
 
-        if (theGameFragment == null) {
+        if (theGameFragment == null) { //only instantiate fragments if they don't already exist in the manager
             Bundle myBundle = new Bundle();
             myBundle.putInt("numCards", numCards);
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -94,7 +98,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     // method: onResume
-    // purpose: will resume on rotate and set the appropriate text for thr button
+    // purpose: Last step in the lifecycle before the Activity is displayed to the user. Ensures music toggle
+    //is displaying properly.
     @Override
     protected void onResume() {
         super.onResume();
@@ -106,10 +111,11 @@ public class GameActivity extends AppCompatActivity {
     }
 
     // method: endGameHandler
-    // purpose: disable all buttons, flip over all cards for 8 seconds then return to main activity screen
+    // purpose: disable all buttons besides music toggle, flip over all cards for
+    // 5 seconds then return to main activity screen. This delay allows the user to see what the
+    // card positions were before being returned to the main menu.
     @OnClick(R.id.endGameButton)
     public void endGameHandler() {
-        //toggleMusic.setEnabled(false);
         endGame.setEnabled(false);
         newGame.setEnabled(false);
         tryAgain.setEnabled(false);
@@ -128,7 +134,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     // method: newGameButton
-    // purpose: utton on click will move to InfoActivity class
+    // purpose: Button on click will move to InfoActivity class
     @OnClick(R.id.newGameButton)
     public void newGameButton() {
         Intent intent = new Intent(this, InfoActivity.class);
@@ -136,7 +142,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     // method: tryAgainButton
-    // purpose: call method that will flip over the two cards and deduct points
+    // purpose: Calls the method within the game fragment to handle the "try again" action
     @OnClick(R.id.tryAgainButton)
     public void tryAgainHandler() {
         theGameFragment.tryAgainHandler();
@@ -151,12 +157,12 @@ public class GameActivity extends AppCompatActivity {
         if (mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             toggleMusic.setText("Turn Music On");
-            musicFragment.setWasPlaying(false);
+            musicFragment.setWasPlaying(false); //for tracking on rotation
         }
         else {
             mediaPlayer.start();
             toggleMusic.setText("Turn Music Off");
-            musicFragment.setWasPlaying(true);
+            musicFragment.setWasPlaying(true); //for tracking on rotation
         }
     }
 
@@ -174,7 +180,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     // method: moveToMainActivity
-    // purpose: will move screen to main activity
+    // purpose: will move screen to main activity (main menu)
     public void moveToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
