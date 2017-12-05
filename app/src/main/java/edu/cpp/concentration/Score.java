@@ -1,8 +1,15 @@
+/** *************************************************************
+ * file: Score.java
+ * author: Nicholas Pham
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: This class allows for storing "Score" objects containing the name and score of a player.
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
-
-/**
- * This class allows for storing "Score" objects containing the name and score of a player.
- */
 
 public class Score {
 

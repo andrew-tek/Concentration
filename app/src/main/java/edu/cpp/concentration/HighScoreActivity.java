@@ -1,5 +1,15 @@
+/** *************************************************************
+ * file: HighScoreActivity.java
+ * author: Nicholas Pham, Andrew Tek
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Displays users high scores for a specified game type (determined by number of cards played)
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
-
 
 import android.content.Intent;
 import android.os.Bundle;

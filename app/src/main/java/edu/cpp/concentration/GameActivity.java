@@ -1,3 +1,15 @@
+/** *************************************************************
+ * file: GameActivity.java
+ * author: Christopher Kilian, Andrew Tek
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Handles the main Concentration game and related fragments (the game and music fragments).
+ * Also manages button clicks for New Game, End Game, Try Again, and Toggle Music buttons.
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
 
 import android.content.Intent;
@@ -59,7 +71,6 @@ public class GameActivity extends AppCompatActivity {
             theGameFragment = new GameFragment();
             theGameFragment.setArguments(myBundle);
             fragmentTransaction.add(R.id.fragment_container, theGameFragment, SAVED_FRAGMENT_TAG);
-            //MusicFragment fragment
             fragmentTransaction.commit();
         }
         if (musicFragment == null) {

@@ -1,5 +1,17 @@
+/** *************************************************************
+ * file: MusicFragment.java
+ * author: Christopher Kilian, Andrew Tek
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Handles the playing of music during the main game. This fragment allows the music to continue
+ * playing (or not, depending on user preference) when the game state changes, such as on rotate, without
+ * any pause noticeable to the player.
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
-
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -15,8 +27,6 @@ import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-
 
 public class MusicFragment extends Fragment {
 
