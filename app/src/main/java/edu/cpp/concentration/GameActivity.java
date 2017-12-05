@@ -95,7 +95,7 @@ public class GameActivity extends AppCompatActivity {
     //Disable all buttons, flip over all cards for 8 seconds then return to main activity screen
     @OnClick(R.id.endGameButton)
     public void endGameHandler() {
-        toggleMusic.setEnabled(false);
+        //toggleMusic.setEnabled(false);
         endGame.setEnabled(false);
         newGame.setEnabled(false);
         tryAgain.setEnabled(false);
@@ -110,7 +110,7 @@ public class GameActivity extends AppCompatActivity {
             public void run() {
                 moveToMainActivity();
             }
-        }, 8000);
+        }, 5000);
     }
 
     //Button on click will move to InfoActivity class
