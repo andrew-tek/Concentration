@@ -70,7 +70,8 @@ public class GameActivity extends AppCompatActivity {
         }
         while (theGameFragment == null) {
             try {
-                score.setText("Score: " + theGameFragment.getTheGame().getScore());
+                String scoreText = "Score: " + theGameFragment.getTheGame().getScore();
+                score.setText(scoreText);
             }
             catch (Exception e) {
             }

@@ -216,17 +216,13 @@ public class GameFragment extends Fragment {
 
 
     private void gameOver(){
-        Intent gaveOverIntent = new Intent(getActivity(), GameOverActivity.class);
+        Intent gameOverIntent = new Intent(getActivity(), GameOverActivity.class);
         int finalScore = theGame.getScore();
-        gaveOverIntent.putExtra("score", finalScore);
-        gaveOverIntent.putExtra("numCards", numCards);
+        gameOverIntent.putExtra("score", finalScore);
+        gameOverIntent.putExtra("numCards", numCards);
         Log.i("toPass", "score: " + finalScore);
         Log.i("toPass", "card num: " + numCards);
-        getActivity().startActivity(gaveOverIntent);
-        //placeholder - should transition to game over/high scores screen and display final score
-        //call getActivity() to get the base activity and initiate changing Activities
-        //see moveToGameActivity in InfoActivity for how to pass score and numCards to game over screen
-        // setIntExtra
+        getActivity().startActivity(gameOverIntent);
     }
 
     public GameHandler getTheGame(){
