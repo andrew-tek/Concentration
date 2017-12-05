@@ -47,6 +47,8 @@
             android:id="@+id/nameSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:inputType="text"
             android:layout_below="@id/askForScore" />
 
         <Button
