@@ -7,14 +7,10 @@
  * date last modified: 12/04/2017
  *
  * purpose: Displays users high scores for a specified game type (determined by number of cards played)
+ *          based on file on that selection.
  *
  *************************************************************** */
 package edu.cpp.concentration;
-
-/**
- * This activity is displayed after a user selects how many cards (difficulty) and then chooses
- * a file based on that selection.
- */
  
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,22 +1,18 @@
 /** *************************************************************
  * file: HighScoreInfoActivity.java
- * author: Andrew Tek
+ * author: Andrew Tek, Nicholas Pham
  * class: CS 245 – Programming Graphical User Interfaces
  *
  * assignment: Android App - Concentration
  * date last modified: 12/04/2017
  *
  * purpose: Allows the player to select which type of high-score they want to see.
- * High-scores are dependent on number of cards played in a game, and this Activity lets the player
- * select which game before displaying the appropriate high-scores.
+ *          High-scores are dependent on number of cards played in a game, and this Activity lets the player
+ *          select which game before displaying the appropriate high-scores. Passes number of cards
+ *          information to HighScoreActivity.
  *
  *************************************************************** */
 package edu.cpp.concentration;
-
-/**
- * This activity is displayed to prompt the user for a difficulty, and then it displays the top
- * 3 high scores of that difficulty.
- */
 
 import android.content.Intent;
 import android.support.v4.app.NavUtils;

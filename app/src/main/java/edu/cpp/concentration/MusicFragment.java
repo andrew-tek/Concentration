@@ -42,7 +42,8 @@ public class MusicFragment extends Fragment {
         wasPlaying = true;
     }
 
-    //runs every time the fragment is reinitialized on state-change (including the very first time)
+    // method: onCreateView
+    // purpose: runs every time the fragment is reinitialized on state-change (including the very first time)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,7 +59,8 @@ public class MusicFragment extends Fragment {
         return thisFragmentView;
     }
 
-    //when called will pause the media player
+    // method: onPause
+    // purpose: when called will pause the media player
     @Override
     public void onPause() {
         super.onPause();
@@ -66,7 +68,8 @@ public class MusicFragment extends Fragment {
         Log.i("PAUSE", "Hello from onPause!");
     }
 
-    //runs once when the game is actually finished and the fragment is permanently destroyed
+    // method: onDestroy
+    // purpose: runs once when the game is actually finished and the fragment is permanently destroyed
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -74,14 +77,16 @@ public class MusicFragment extends Fragment {
         Log.i("DESTROY", "Hello from onDestroy!");
     }
 
-    //When called will play the music
+    // method: playMusic
+    // purpose: when called will play the music
     private void playMusic(){
         if(!mediaPlayer.isPlaying()){
             mediaPlayer.start();
         }
     }
 
-    //When called will stop music
+    // method: stopMusic
+    // purpose: when called will stop music
     private void stopMusic(){
         if(mediaPlayer!= null){
             if(mediaPlayer.isPlaying()){
@@ -92,14 +97,14 @@ public class MusicFragment extends Fragment {
         }
     }
 
-    //If music is playing will pause song
+    // method: pauseMusic
+    // purpose: if music is playing will pause song
     private void pauseMusic(){
         if(mediaPlayer!= null && mediaPlayer.isPlaying()){
             wasPlaying = true;
             mediaPlayer.pause();
         }
     }
-
 
     public MediaPlayer getMediaPlayer() {
         return mediaPlayer;

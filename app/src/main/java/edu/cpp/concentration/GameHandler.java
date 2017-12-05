@@ -34,6 +34,8 @@ public class GameHandler {
         gameWon = false;
     }
 
+    // method: selectFirstCard
+    // purpose: selects the first card and puts counter to 1 card selected
     public void selectFirstCard(int cardVal){
         if(!gameWon && (cardsSelected == 0)){ //only run if the game isn't won and no cards have been selected
             cardsSelected = 1;
@@ -43,6 +45,8 @@ public class GameHandler {
         }
     }
 
+    // method: selectSecondCard
+    // purpose: selects second card and puts counter to 2 cards selected
     public void selectSecondCard(int cardVal){
         if(!gameWon && (cardsSelected == 1)){ //only run if game isn't won and 1 card has already been selected
             cardsSelected = 2;
@@ -58,8 +62,9 @@ public class GameHandler {
         }
     }
 
-    //Only to be called by another method from within after lastPairMatch has been set to the proper value.
-    //Used by selectSecondCard to handle game management tasks after checking for a match.
+    // method: matchHandler
+    // purpose: only to be called by another method from within after lastPairMatch has been set to the proper value.
+    //          used by selectSecondCard to handle game management tasks after checking for a match.
     private void matchHandler(){
         if(lastPairMatch) {
             score += 2; //matches gain 2 points
@@ -80,6 +85,8 @@ public class GameHandler {
         }
     }
 
+    // method: tryAgain
+    // purpose: resets card selected counter and their values so a user can try again
     public void tryAgain(){
         if(!gameWon && (cardsSelected == 2)){ //only run if the game isn't won and two cards have already been selected
             cardsSelected = 0;
@@ -90,7 +97,6 @@ public class GameHandler {
             Log.i("game", "The game has either been won, or the proper number of cards has not been selected yet. No action taken.");
         }
     }
-
 
     public int getCardsSelected() {
         return cardsSelected;
