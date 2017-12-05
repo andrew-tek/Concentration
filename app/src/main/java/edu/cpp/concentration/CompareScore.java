@@ -8,7 +8,6 @@ package edu.cpp.concentration;
 import java.util.Comparator;
 
 public class CompareScore implements Comparator<Score> {
-
     // method: compare
     // purpose: comparse 2 scores to see which is higher than the other using Score's getScore() method
     public int compare(Score score1, Score score2) {
@@ -25,5 +24,4 @@ public class CompareScore implements Comparator<Score> {
             return 0;
         }
     }
-
 }

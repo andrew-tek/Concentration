@@ -139,7 +139,8 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    //method to handle the tapping of the "up" button for ancestral navigation
+    // method: opOptionsItemSelected
+    // purpose: method to handle the tapping of the "up" button for ancestral navigation
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

@@ -1,5 +1,11 @@
 package edu.cpp.concentration;
 
+/**
+ * This activity is opened after a game is won. It deals with displaying a user's score
+ * or asks for their name if it happens to be a high score. It sends that information to
+ * a file for the HighScoreActivity to use.
+ */
+
 import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +14,8 @@ import android.util.Log;
 import android.widget.Button;
 import android.view.View;
 import android.content.Context;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -25,11 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import android.widget.EditText;
-import android.widget.TextView;
-
 public class GameOverActivity extends AppCompatActivity {
-
     // Score passed from GameFragment
     private int score;
     // Difficulty of game played; passed from GameFragment
@@ -154,6 +158,7 @@ public class GameOverActivity extends AppCompatActivity {
                     OutputStream os = openFileOutput(filename, MODE_PRIVATE);
                     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
 
+                    // Write 3 Scores (top 3)
                     for (int i = 0; i < 3; i++) {
                         bw.write(scoresList.get(i).getName() + " " + scoresList.get(i).getScore() + "\n");
                         Log.i("NAME WRITTEN: ", scoresList.get(i).getName());
@@ -174,13 +179,15 @@ public class GameOverActivity extends AppCompatActivity {
         }
         // If the player did not get a high score
         else {
-            // Do not ask for name, and hide the
+            // Do not ask for name, and hide the items that are displayed when a high score should be asked for
             askForScore.setVisibility(View.GONE);
             nameSubmit.setVisibility(View.GONE);
             submitScore.setVisibility(View.GONE);
         }
     }
 
+    // method: returnToMainMenu
+    // purpose: button listener to go from this activity to main menu
     @OnClick(R.id.mainMenuButton)
     public void returnToMainMenu() {
         Intent intent = new Intent(this, MainActivity.class);
