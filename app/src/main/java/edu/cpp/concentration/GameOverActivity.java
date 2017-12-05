@@ -74,7 +74,9 @@ public class GameOverActivity extends AppCompatActivity {
     @BindView(R.id.mainMenuButton)
     Button mainMenuButton;
 
-
+    // method: onCreate
+    // purpose: Build the activity and set its instance variables to passed values. Display user score, and
+    // check for high score.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,13 +99,12 @@ public class GameOverActivity extends AppCompatActivity {
         // Run method to see if high score
         // If it is, add to list, if not, display score and button to return to main menu
         isHighScore();
-
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//    }
 
     // method: isHighScore
     // purpose: if the user gets a new high score, then the program will ask them for their name so it can
