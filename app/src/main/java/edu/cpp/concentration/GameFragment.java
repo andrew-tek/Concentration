@@ -4,7 +4,6 @@ package edu.cpp.concentration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
@@ -53,11 +51,6 @@ public class GameFragment extends Fragment {
 
         theGame = new GameHandler(numCards);
         initCardsHandler();
-
-
-
-
-        Log.w("hello", "onCreate: DAMNIT");
     }
 
     //this runs each time the fragment is handled - in other words, first when it is initialized, and then every time the
@@ -96,16 +89,10 @@ public class GameFragment extends Fragment {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         params.setMargins(5,5,5,5);
-        if((numCards%4 == 0) || ((i != numCards-1) && (i != numCards-2))) {
-            params.weight = 1;
-        }
         cardButton.setLayoutParams(params);
         cardButton.setBackgroundResource(R.drawable.cardback);
         cardButton.setTag(buttonTag);
-//        cardButton.setGravity(Gravity.CENTER);
         cardButton.setOnClickListener(onClickFlipper(cardButton));
-        cardButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
         return cardButton;
     }
 
@@ -154,13 +141,37 @@ public class GameFragment extends Fragment {
 
     //Method to display the programatically created cards on the screen
     private void initCardView(){
+        boolean portraitFlag = true;
+        if(getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE) {
+            portraitFlag = false;
+        }
 
         for(int i = 0; i < buttonList.size(); i++){
             LinearLayout layout = getRow(i);
+            setWeight(i, portraitFlag);
             layout.addView(buttonList.get(i));
         }
 
     }
+
+    private void setWeight(int i, boolean portraitFlag){
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)buttonList.get(i).getLayoutParams();
+        int lastRowSize;
+        if(portraitFlag){
+            lastRowSize = numCards%4;
+        }else{
+            lastRowSize = numCards%7;
+        }
+
+        if(i < (numCards-lastRowSize)) {
+            params.weight = 1;
+        }else{
+            params.weight = 0;
+        }
+
+    }
+
+
 
     //Method to clear button associations to prior layouts so that they can be re-placed (for rotation)
     private void clearCardView(){

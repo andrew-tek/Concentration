@@ -94,7 +94,7 @@ public class GameActivity extends AppCompatActivity {
 
     @OnClick(R.id.endGameButton)
     public void endGameHandler() {
-        toggleMusic.setEnabled(false);
+        //toggleMusic.setEnabled(false);
         endGame.setEnabled(false);
         newGame.setEnabled(false);
         tryAgain.setEnabled(false);
@@ -109,7 +109,7 @@ public class GameActivity extends AppCompatActivity {
             public void run() {
                 moveToMainActivity();
             }
-        }, 8000);
+        }, 5000);
     }
 
     @OnClick(R.id.newGameButton)
