@@ -1,3 +1,16 @@
+/** *************************************************************
+ * file: InfoActivity.java
+ * author: Andrew Tek, Christopher Kilian
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Allows the player to select which type of Concentration game they want
+ * to play. Games types are determined by number of cards, and this Activity lets the player choose their
+ * number of cards before loading the appropriate game.
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
 
 import android.content.Intent;
@@ -31,7 +44,8 @@ public class InfoActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    //Will move to gameScreen and send the number of cards desired to the next activity
+    // method: moveToGameActivity
+    // purpose: will move to gameScreen and send the number of cards desired to the next activity
     @OnClick(R.id.submitButton)
     public void moveToGameActivity() {
         Intent intent = new Intent(this, GameActivity.class);
@@ -41,7 +55,8 @@ public class InfoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //method to handle the tapping of the "up" button for ancestral navigation
+    // method: onOptionsItemSelected
+    // purpose: method to handle the tapping of the "up" button for ancestral navigation
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

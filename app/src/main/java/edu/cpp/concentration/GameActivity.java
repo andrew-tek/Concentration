@@ -1,3 +1,15 @@
+/** *************************************************************
+ * file: GameActivity.java
+ * author: Christopher Kilian, Andrew Tek
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Handles the main Concentration game and related fragments (the game and music fragments).
+ *          Also manages button clicks for New Game, End Game, Try Again, and Toggle Music buttons.
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
 
 import android.content.Intent;
@@ -37,6 +49,10 @@ public class GameActivity extends AppCompatActivity {
     @BindView(R.id.newGameButton)
     Button newGame;
 
+    // method: onCreate
+    // purpose: Builds the activity. Runs every time the activity is created or recreated, so local variables are
+    //set here, including the getting of fragments from the fragment manager, or the instantiation of those
+    //fragments if necessary.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,17 +65,16 @@ public class GameActivity extends AppCompatActivity {
         }
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        theGameFragment = (GameFragment) fragmentManager.findFragmentByTag(SAVED_FRAGMENT_TAG);
-        musicFragment = (MusicFragment) fragmentManager.findFragmentByTag(SAVED_MUSIC_FRAGMENT_TAG);
+        theGameFragment = (GameFragment) fragmentManager.findFragmentByTag(SAVED_FRAGMENT_TAG); //handles game display
+        musicFragment = (MusicFragment) fragmentManager.findFragmentByTag(SAVED_MUSIC_FRAGMENT_TAG); //handles music
 
-        if (theGameFragment == null) {
+        if (theGameFragment == null) { //only instantiate fragments if they don't already exist in the manager
             Bundle myBundle = new Bundle();
             myBundle.putInt("numCards", numCards);
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             theGameFragment = new GameFragment();
             theGameFragment.setArguments(myBundle);
             fragmentTransaction.add(R.id.fragment_container, theGameFragment, SAVED_FRAGMENT_TAG);
-            //MusicFragment fragment
             fragmentTransaction.commit();
         }
         if (musicFragment == null) {
@@ -81,7 +96,10 @@ public class GameActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
     }
-    //Will resume on rotate and set the appropriate text for thr button
+
+    // method: onResume
+    // purpose: Last step in the lifecycle before the Activity is displayed to the user. Ensures music toggle
+    //is displaying properly.
     @Override
     protected void onResume() {
         super.onResume();
@@ -92,11 +110,12 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-
-    //Disable all buttons, flip over all cards for 8 seconds then return to main activity screen
+    // method: endGameHandler
+    // purpose: disable all buttons besides music toggle, flip over all cards for
+    // 5 seconds then return to main activity screen. This delay allows the user to see what the
+    // card positions were before being returned to the main menu.
     @OnClick(R.id.endGameButton)
     public void endGameHandler() {
-        //toggleMusic.setEnabled(false);
         endGame.setEnabled(false);
         newGame.setEnabled(false);
         tryAgain.setEnabled(false);
@@ -114,37 +133,41 @@ public class GameActivity extends AppCompatActivity {
         }, 5000);
     }
 
-    //Button on click will move to InfoActivity class
+    // method: newGameButton
+    // purpose: Button on click will move to InfoActivity class
     @OnClick(R.id.newGameButton)
     public void newGameButton() {
         Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
     }
 
-    //Call method that will flip over the two cards and deduct points
+    // method: tryAgainButton
+    // purpose: Calls the method within the game fragment to handle the "try again" action
     @OnClick(R.id.tryAgainButton)
     public void tryAgainHandler() {
         theGameFragment.tryAgainHandler();
 
     }
 
-    //Play music and set appropriate text for the button
+    // method: toggleMusic
+    // purpose: play music and set appropriate text for the button
     @OnClick(R.id.toggleMusicButton)
     public void toggleMusic() {
         MediaPlayer mediaPlayer = musicFragment.getMediaPlayer();
         if (mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             toggleMusic.setText("Turn Music On");
-            musicFragment.setWasPlaying(false);
+            musicFragment.setWasPlaying(false); //for tracking on rotation
         }
         else {
             mediaPlayer.start();
             toggleMusic.setText("Turn Music Off");
-            musicFragment.setWasPlaying(true);
+            musicFragment.setWasPlaying(true); //for tracking on rotation
         }
     }
 
-    //method to handle the tapping of the "up" button for ancestral navigation
+    // method: opOptionsItemSelected
+    // purpose: method to handle the tapping of the "up" button for ancestral navigation
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -156,7 +179,8 @@ public class GameActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Will move screen to main activity
+    // method: moveToMainActivity
+    // purpose: will move screen to main activity (main menu)
     public void moveToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
