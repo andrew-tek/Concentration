@@ -11,13 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.io.IOException;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MusicFragment extends Fragment {
 
     MediaPlayer mediaPlayer;
