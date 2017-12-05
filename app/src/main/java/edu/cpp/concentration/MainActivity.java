@@ -30,17 +30,16 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(false); //ancestral navigation button
         highScoreFileToMemory();
         ButterKnife.bind(this);
-//        Context context = this;
-//        MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.mario_song);
-//        mediaPlayer.start();
-
     }
 
+    //Move intent to info activity
     @OnClick(R.id.startGameButton)
     public void changeScreenToActivityInfo() {
         Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
     }
+
+    //move intent to highscore activity
     @OnClick(R.id.highScoreButton)
     public void changeScreenToHighScoreInfo() {
         Intent intent = new Intent (this, HighScoreInfoActivity.class);
