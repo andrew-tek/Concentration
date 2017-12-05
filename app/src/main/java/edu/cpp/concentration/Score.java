@@ -8,7 +8,7 @@ public class Score {
 
     // name of player or user
     private String name;
-    // player's high score
+    // player's score from game
     private int score;
 
     // method: Scores

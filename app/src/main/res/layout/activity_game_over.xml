@@ -45,20 +45,20 @@
 
         <EditText
             android:id="@+id/nameSubmit"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:maxLines="1"
+            android:layout_below="@id/askForScore"
             android:inputType="text"
-            android:layout_below="@id/askForScore" />
+            android:maxLines="1" />
 
         <Button
             android:id="@+id/submitScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/askForScore"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="50dp"
-            android:text="Submit Score" />
+
+            android:layout_alignTop="@+id/nameSubmit"
+            android:layout_toEndOf="@+id/nameSubmit"
+            android:text="Submit" />
 
         <Button
             android:id="@+id/mainMenuButton"
