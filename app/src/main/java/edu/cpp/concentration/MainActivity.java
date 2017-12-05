@@ -47,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @OnClick(R.id.creditsButton)
+    public void changeScreenToCredits() {
+        Intent intent = new Intent(this, CreditsActivity.class);
+        startActivity(intent);
+    }
+
     // method: highScoreFileToMemory
     // purpose: takes the high scores file associated with the difficulty and places it in internal memory if it isn't there
     private void highScoreFileToMemory() {

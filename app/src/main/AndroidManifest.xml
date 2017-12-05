@@ -28,7 +28,8 @@
         <activity
             android:name=".HighScoreActivity"
             android:parentActivityName=".HighScoreInfoActivity" />
-        <activity android:name=".GameOverActivity"></activity>
+        <activity android:name=".GameOverActivity" />
+        <activity android:name=".CreditsActivity"></activity>
     </application>
 
 </manifest>
