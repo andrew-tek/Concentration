@@ -111,6 +111,9 @@ public class GameOverActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     String input = nameSubmit.getText().toString();
+                    if (nameSubmit.getText().toString().equals("") || nameSubmit.getText().toString().equals(null)) {
+                        input = "ABC";
+                    }
                     // Erase last node (lowest score) on high scores list to add new (latest score)
                     while (scoresList.size() > 2) {
                         scoresList.remove((scoresList.size()) - 1);

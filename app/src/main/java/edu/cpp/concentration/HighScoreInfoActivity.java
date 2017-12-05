@@ -28,6 +28,8 @@ public class HighScoreInfoActivity extends AppCompatActivity {
         numberPicker.setDisplayedValues(values);
         ButterKnife.bind(this);
     }
+
+
     @OnClick(R.id.submitButtonHighScore)
     public void moveToHighScoreScreen() {
         Intent intent = new Intent(this, HighScoreActivity.class);
