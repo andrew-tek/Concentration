@@ -1,3 +1,14 @@
+/***************************************************************
+ * file: CompareScore.java
+ * author: Nicholas Pham
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Handles score comparison
+ *
+ ****************************************************************/
 package edu.cpp.concentration;
 
 /**

@@ -1,3 +1,16 @@
+/** *************************************************************
+ * file: InfoActivity.java
+ * author: Andrew Tek, Christopher Kilian
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Allows the player to select which type of Concentration game they want
+ * to play. Games types are determined by number of cards, and this Activity lets the player choose their
+ * number of cards before loading the appropriate game.
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
 
 import android.content.Intent;
@@ -17,6 +30,7 @@ public class InfoActivity extends AppCompatActivity {
     NumberPicker numberPicker;
     @BindView(R.id.submitButton)
     Button submitButton;
+    //On create will set the numbers that can be selected in number picker
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +44,9 @@ public class InfoActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    //Will move to gameScreen and send the number of cards desired to the next activity
     @OnClick(R.id.submitButton)
     public void moveToGameActivity() {
-        //Bundle bundle = new Bundle();
-        //bundle.putInt("numCards", numberPicker.getValue());
         Intent intent = new Intent(this, GameActivity.class);
         int numCardsSelected = Integer.parseInt(numberPicker.getDisplayedValues()[numberPicker.getValue()]);
         Log.i("toPass","cards selected reads: " + numCardsSelected);

@@ -1,5 +1,17 @@
+/** *************************************************************
+ * file: MusicFragment.java
+ * author: Christopher Kilian, Andrew Tek
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Handles the playing of music during the main game. This fragment allows the music to continue
+ * playing (or not, depending on user preference) when the game state changes, such as on rotate, without
+ * any pause noticeable to the player.
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
-
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -11,13 +23,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.io.IOException;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MusicFragment extends Fragment {
 
     MediaPlayer mediaPlayer;
@@ -48,6 +58,7 @@ public class MusicFragment extends Fragment {
         return thisFragmentView;
     }
 
+    //when called will pause the media player
     @Override
     public void onPause() {
         super.onPause();
@@ -63,12 +74,14 @@ public class MusicFragment extends Fragment {
         Log.i("DESTROY", "Hello from onDestroy!");
     }
 
+    //When called will play the music
     private void playMusic(){
         if(!mediaPlayer.isPlaying()){
             mediaPlayer.start();
         }
     }
 
+    //When called will stop music
     private void stopMusic(){
         if(mediaPlayer!= null){
             if(mediaPlayer.isPlaying()){
@@ -79,6 +92,7 @@ public class MusicFragment extends Fragment {
         }
     }
 
+    //If music is playing will pause song
     private void pauseMusic(){
         if(mediaPlayer!= null && mediaPlayer.isPlaying()){
             wasPlaying = true;

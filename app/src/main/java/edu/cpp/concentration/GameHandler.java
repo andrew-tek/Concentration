@@ -1,3 +1,15 @@
+/** *************************************************************
+ * file: GameHandler.java
+ * author: Christopher Kilian
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Handles all non-UI based Concentration game activities, including checking for card matches, checking how many
+ * cards are currently selected, game over conditions, and other necessary game management activities.
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
 
 import android.util.Log;

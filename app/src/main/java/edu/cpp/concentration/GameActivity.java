@@ -1,3 +1,15 @@
+/** *************************************************************
+ * file: GameActivity.java
+ * author: Christopher Kilian, Andrew Tek
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Handles the main Concentration game and related fragments (the game and music fragments).
+ * Also manages button clicks for New Game, End Game, Try Again, and Toggle Music buttons.
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
 
 import android.content.Intent;
@@ -59,7 +71,6 @@ public class GameActivity extends AppCompatActivity {
             theGameFragment = new GameFragment();
             theGameFragment.setArguments(myBundle);
             fragmentTransaction.add(R.id.fragment_container, theGameFragment, SAVED_FRAGMENT_TAG);
-            //MusicFragment fragment
             fragmentTransaction.commit();
         }
         if (musicFragment == null) {
@@ -70,7 +81,8 @@ public class GameActivity extends AppCompatActivity {
         }
         while (theGameFragment == null) {
             try {
-                score.setText("Score: " + theGameFragment.getTheGame().getScore());
+                String scoreText = "Score: " + theGameFragment.getTheGame().getScore();
+                score.setText(scoreText);
             }
             catch (Exception e) {
             }
@@ -80,7 +92,7 @@ public class GameActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
     }
-
+    //Will resume on rotate and set the appropriate text for thr button
     @Override
     protected void onResume() {
         super.onResume();
@@ -92,9 +104,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
+    //Disable all buttons, flip over all cards for 8 seconds then return to main activity screen
     @OnClick(R.id.endGameButton)
     public void endGameHandler() {
-        toggleMusic.setEnabled(false);
+        //toggleMusic.setEnabled(false);
         endGame.setEnabled(false);
         newGame.setEnabled(false);
         tryAgain.setEnabled(false);
@@ -109,21 +122,24 @@ public class GameActivity extends AppCompatActivity {
             public void run() {
                 moveToMainActivity();
             }
-        }, 8000);
+        }, 5000);
     }
 
+    //Button on click will move to InfoActivity class
     @OnClick(R.id.newGameButton)
     public void newGameButton() {
         Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
     }
 
+    //Call method that will flip over the two cards and deduct points
     @OnClick(R.id.tryAgainButton)
     public void tryAgainHandler() {
         theGameFragment.tryAgainHandler();
 
     }
 
+    //Play music and set appropriate text for the button
     @OnClick(R.id.toggleMusicButton)
     public void toggleMusic() {
         MediaPlayer mediaPlayer = musicFragment.getMediaPlayer();
@@ -152,6 +168,7 @@ public class GameActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Will move screen to main activity
     public void moveToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

@@ -1,3 +1,15 @@
+/** *************************************************************
+ * file: GameOverActivity.java
+ * author: Nicholas Pham, Christopher Kilian
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Handles ending a game, including checking player score, displaying final score,
+ * gathering user name if they have a high score, and writing to the high-score files.
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
 
 /**
@@ -81,7 +93,9 @@ public class GameOverActivity extends AppCompatActivity {
         Log.i("retreived: ", "score: " + score);
         Log.i("num cards", "numcards: " + numCards);
 
-        finalScore.setText("Your score is: " + score);
+        String theScore = "Your score is: " + score;
+        finalScore.setText(theScore);
+      
         // filename is appended from number of cards played to the following rest of text for the file
         filename = Integer.toString(numCards) + "-highscores.txt";
 

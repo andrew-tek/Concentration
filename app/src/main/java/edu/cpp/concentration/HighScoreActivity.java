@@ -1,10 +1,21 @@
+/** *************************************************************
+ * file: HighScoreActivity.java
+ * author: Nicholas Pham, Andrew Tek
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Displays users high scores for a specified game type (determined by number of cards played)
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
 
 /**
  * This activity is displayed after a user selects how many cards (difficulty) and then chooses
  * a file based on that selection.
  */
-
+ 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -62,8 +73,11 @@ public class HighScoreActivity extends AppCompatActivity {
         // Number of cards == difficulty, passed from HighScoreInfoActivity
         numberPicker = findViewById(R.id.numberPickerHighScore);
         numberofCards = getIntent().getIntExtra("numCards", -1);
+
         // Display # of cards difficulty to screen
-        highScoreTextView.setText("High scores for: " + numberofCards + " cards");
+        String numScores = "High scores for: " + numberofCards + " cards";
+        highScoreTextView.setText(numScores);
+
         // Filename == #-highscores.txt
         filename = Integer.toString(numberofCards) + "-highscores.txt";
         // Debug filename
@@ -120,8 +134,11 @@ public class HighScoreActivity extends AppCompatActivity {
         }
         // Sets top 3 scores to display with TextView
         Log.i("Name Player 1: ", scoresList.get(0).getName() + " " + scoresList.get(0).getScore());
-        playerOne.setText("1. " + scoresList.get(0).getName() + ": " + scoresList.get(0).getScore());
-        playerTwo.setText("2. " + scoresList.get(1).getName() + ": " + scoresList.get(1).getScore());
-        playerThree.setText("3. " + scoresList.get(2).getName() + ": " + scoresList.get(2).getScore());
+        String playerOneText = "1. " + scoresList.get(0).getName() + ": " + scoresList.get(0).getScore();
+        String playerTwoText = "2. " + scoresList.get(1).getName() + ": " + scoresList.get(1).getScore();
+        String playerThreeText = "3. " + scoresList.get(2).getName() + ": " + scoresList.get(2).getScore();
+        playerOne.setText(playerOneText);
+        playerTwo.setText(playerTwoText);
+        playerThree.setText(playerThreeText);
     }
 }
