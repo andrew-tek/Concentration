@@ -51,7 +51,7 @@ public class HighScoreActivity extends AppCompatActivity {
 
         numberPicker = findViewById(R.id.numberPickerHighScore);
         numberofCards = getIntent().getIntExtra("numCards", -1);
-        highScoreTextView.setText("High Scores For: " + numberofCards + " Cards");
+        highScoreTextView.setText("High scores for: " + numberofCards + " cards");
 
         filename = Integer.toString(numberofCards) + "-highscores.txt";
 

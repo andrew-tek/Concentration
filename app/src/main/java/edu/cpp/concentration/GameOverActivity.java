@@ -50,6 +50,9 @@ public class GameOverActivity extends AppCompatActivity {
     @BindView(R.id.nameSubmit)
     EditText nameSubmit;
 
+    @BindView(R.id.mainMenuButton)
+    Button mainMenuButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +68,6 @@ public class GameOverActivity extends AppCompatActivity {
 
         finalScore.setText("Your score is: " + score);
         filename = Integer.toString(numCards) + "-highscores.txt";
-
-//        if (isHighScore() != -1) {
-//            askForScore.setText("You have a new high score! Please enter a name for this score: ");
-//            String input = nameSubmit.getText().toString();
-//            addHighScore(isHighScore(), input);
-//        }
 
         isHighScore();
 
@@ -108,18 +105,16 @@ public class GameOverActivity extends AppCompatActivity {
         Log.i("scoresList[0]", ""+ scoresList.get(0).getScore());
 
         if (score >= scoresList.get(1).getScore()) {
+            mainMenuButton.setVisibility(View.GONE);
             askForScore.setText("You have a new high score! Please enter a name for this score: ");
             submitScore.setOnClickListener((new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String input = nameSubmit.getText().toString();
-                    // ADD ERASURE OF LAST NODE
-//                    while(highScores.size() > 4){
-//                        highScores.remove((highScores.size()-1));
-//                    }
-//
-//                    highScores.add(score);
-
+                    // Erase last node (lowest score) on high scores list to add new (latest score)
+                    while (scoresList.size() > 2) {
+                        scoresList.remove((scoresList.size()) - 1);
+                    }
                     scoresList.add(new Score(input, score));
                     CompareScore comparator = new CompareScore();
                     Collections.sort(scoresList, comparator);
@@ -157,90 +152,10 @@ public class GameOverActivity extends AppCompatActivity {
         }
     }
 
-//    @OnClick(R.id.nameSubmit)
-//    public void submitName() {
-//        // add score to file
-//        String input = nameSubmit.getText().toString();
-//        scoresList.add(new Score(input, score));
-//        CompareScore comparator = new CompareScore();
-//        Collections.sort(scoresList, comparator);
-//        Log.i("name/score", input);
-//
-//
-//        for (int i = 0; i < scoresList.size(); i++) {
-//            Log.i("array", "NAME: " + scoresList.get(i).getName() + " | SCORE: " + scoresList.get(i).getScore());
-//        }
-//        try {
-//            OutputStream os = openFileOutput(filename, MODE_PRIVATE);
-//            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-//
-//
-//
-//            for (int i = 0; i < 3; i++) {
-////                bw.write(scoresList.get(i).getName() + " " + scoresList.get(i).getScore() + "\n");
-//                Log.i("NAME WRITTEN: ", scoresList.get(i).getName());
-//            }
-//            os.close();
-//            bw.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
-//    private int isHighScore() {
-//        String dataInFile = readFile(filename);
-//        String[] scoreList = dataInFile.split("\n");
-//        for (int i = 0; i < 3; i++) {
-//            String[] nameAndScore = scoreList[i].split(" ");
-//            if (score > Integer.parseInt(nameAndScore[1])) {
-//                return i;
-//            }
-//        }
-//        return -1;
-//    }
-//
-//    private void addHighScore(int i, String userName) {
-//        String dataInFile = readFile(filename);
-//        String[] scoreList = dataInFile.split("\n");
-//
-//        if (i > -1 && i < 4) {
-//            if (i+1 < 3) {
-//                scoreList[i+1] = scoreList[i];
-//            }
-//            scoreList[i] = (userName + " " + score);
-//        }
-//        try {
-//            FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE);
-//
-//            for (int j = 0; j < 3; j++) {
-//                fos.write((scoreList[j] + "\n").getBytes());
-//            }
-//            fos.close();
-//        }
-//        catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private String readFile(String filename) {
-//        int i;
-//
-//        String contents = "";
-//        try {
-//            FileInputStream fis = openFileInput(filename);
-//
-//            while ((i = fis.read()) != -1) {
-//                contents += Character.toString((char)i);
-//            }
-//            fis.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return contents;
-//    }
-
-
-
+    @OnClick(R.id.mainMenuButton)
+    public void returnToMainMenu() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
 }

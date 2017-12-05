@@ -58,6 +58,15 @@
             android:layout_marginTop="50dp"
             android:text="Submit Score" />
 
+        <Button
+            android:id="@+id/mainMenuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/finalScore"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="50dp"
+            android:text="Return to Main Menu" />
+
     </RelativeLayout>
 
 </LinearLayout>
