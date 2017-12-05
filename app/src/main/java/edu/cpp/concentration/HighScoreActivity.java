@@ -51,7 +51,8 @@ public class HighScoreActivity extends AppCompatActivity {
 
         numberPicker = findViewById(R.id.numberPickerHighScore);
         numberofCards = getIntent().getIntExtra("numCards", -1);
-        highScoreTextView.setText("High scores for: " + numberofCards + " cards");
+        String numScores = "High scores for: " + numberofCards + " cards";
+        highScoreTextView.setText(numScores);
 
         filename = Integer.toString(numberofCards) + "-highscores.txt";
 
@@ -102,9 +103,12 @@ public class HighScoreActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         Log.i("Name Player 1: ", scoresList.get(0).getName() + " " + scoresList.get(0).getScore());
-        playerOne.setText("1. " + scoresList.get(0).getName() + ": " + scoresList.get(0).getScore());
-        playerTwo.setText("2. " + scoresList.get(1).getName() + ": " + scoresList.get(1).getScore());
-        playerThree.setText("3. " + scoresList.get(2).getName() + ": " + scoresList.get(2).getScore());
+        String playerOneText = "1. " + scoresList.get(0).getName() + ": " + scoresList.get(0).getScore();
+        String playerTwoText = "2. " + scoresList.get(1).getName() + ": " + scoresList.get(1).getScore();
+        String playerThreeText = "3. " + scoresList.get(2).getName() + ": " + scoresList.get(2).getScore();
+        playerOne.setText(playerOneText);
+        playerTwo.setText(playerTwoText);
+        playerThree.setText(playerThreeText);
     }
 
 }
