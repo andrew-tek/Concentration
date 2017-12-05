@@ -1,3 +1,15 @@
+/***************************************************************
+ * file: MainActivity.java
+ * author: Christopher Kilian, Nicholas Pham, Andrew Tek
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Builds the main menu, along with xml file activity_main. Also loads the files necessary
+ * for saving and loading player high-scores.
+ *
+ ****************************************************************/
 package edu.cpp.concentration;
 
 import android.content.Intent;

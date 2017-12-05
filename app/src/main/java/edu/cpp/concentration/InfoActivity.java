@@ -1,3 +1,16 @@
+/** *************************************************************
+ * file: InfoActivity.java
+ * author: Andrew Tek, Christopher Kilian
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Allows the player to select which type of Concentration game they want
+ * to play. Games types are determined by number of cards, and this Activity lets the player choose their
+ * number of cards before loading the appropriate game.
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
 
 import android.content.Intent;

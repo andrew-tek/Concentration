@@ -1,5 +1,18 @@
+/** *************************************************************
+ * file: GameFragment.java
+ * author: Christopher Kilian
+ * class: CS 245 – Programming Graphical User Interfaces
+ *
+ * assignment: Android App - Concentration
+ * date last modified: 12/04/2017
+ *
+ * purpose: Handles the main Concentration game. Manages card placement, card flipping, card matching, and other related
+ * game activities. Also holds and manipulates reference to GameHandler object which manages game scoring, match checking, and
+ * other non-UI related game activities. Designed to handle both portrait and landscape layouts in conjunction with the fragment_game
+ * xml files found in both layout and layout-land directories.
+ *
+ *************************************************************** */
 package edu.cpp.concentration;
-
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
