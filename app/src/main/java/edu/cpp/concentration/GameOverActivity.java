@@ -131,7 +131,7 @@ public class GameOverActivity extends AppCompatActivity {
         Collections.sort(scoresList, comparator);
 
         // If it's a high score
-        if (score >= scoresList.get(1).getScore()) {
+        if (score >= scoresList.get(2).getScore()) {
             // Remove return to main menu button -> ask for user input
             mainMenuButton.setVisibility(View.GONE);
             askForScore.setText("You have a new high score! Please enter a name for this score: ");
