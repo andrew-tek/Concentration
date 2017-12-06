@@ -141,6 +141,7 @@ public class GameOverActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     // AAk user for name
                     String input = nameSubmit.getText().toString();
+                    input = input.replaceAll("\\s+",""); //Remove spaces
                     // If none inputed, default is "ABC"
                     if (nameSubmit.getText().toString().equals("") || nameSubmit.getText().toString().equals(null)) {
                         input = "ABC";

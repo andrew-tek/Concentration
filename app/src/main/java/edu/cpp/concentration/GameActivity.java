@@ -83,14 +83,6 @@ public class GameActivity extends AppCompatActivity {
             musicTransaction.add(R.id.music_fragment_container, musicFragment, SAVED_MUSIC_FRAGMENT_TAG);
             musicTransaction.commit();
         }
-        while (theGameFragment == null) {
-            try {
-                String scoreText = "Score: " + theGameFragment.getTheGame().getScore();
-                score.setText(scoreText);
-            }
-            catch (Exception e) {
-            }
-        }
 
         getSupportActionBar().setHomeButtonEnabled(true); //ancestral navigation button
 
@@ -99,7 +91,7 @@ public class GameActivity extends AppCompatActivity {
 
     // method: onResume
     // purpose: Last step in the lifecycle before the Activity is displayed to the user. Ensures music toggle
-    //is displaying properly.
+    // is displaying properly. Also sets score text.
     @Override
     protected void onResume() {
         super.onResume();
@@ -108,6 +100,8 @@ public class GameActivity extends AppCompatActivity {
         }else{
             toggleMusic.setText("Turn Music On");
         }
+        String scoreText = "Score: " + theGameFragment.getTheGame().getScore();
+        score.setText(scoreText);
     }
 
     // method: endGameHandler
