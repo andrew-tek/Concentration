@@ -58,6 +58,9 @@ public class HighScoreActivity extends AppCompatActivity {
     // ArrayList of Scores that is obtained and used from the file
     private List<Score> scoresList;
 
+    // method: onCreate
+    // purpose: Initialize High Score Activity member variables from passed values. Display user score,
+    // and check for high score.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +107,8 @@ public class HighScoreActivity extends AppCompatActivity {
     }
 
     // method: displayScores
-    // purpose: read in contents of file, to add to scoresList and then display high scores to screen
+    // purpose: read in contents of file, to add to scoresList and then display high scores to screen.
+    // Write out new high scores and user name if appropriate.
     private void displayScores(String highScoreList) {
         try {
             Log.i("displayScores", "Hello from displayScores! This is the start of the method!");
