@@ -5,7 +5,7 @@
     tools:context="edu.cpp.concentration.MusicFragment">
     <!--***************************************************************-->
     <!--* file: fragment_music.xml-->
-    <!--* author: Christopher Guillian, Andrew Tek-->
+    <!--* author: Christopher Kilian, Andrew Tek-->
     <!--* class: CS 245 – Programming Graphical User Interfaces-->
     <!--*-->
     <!--* assignment: Android Concentration Game-->
