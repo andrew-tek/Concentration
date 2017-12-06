@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="Score: 0"
-            android:textColor="#000"
+            android:textColor="#FFF"
             android:textSize="30dp" />
 
         <Button
