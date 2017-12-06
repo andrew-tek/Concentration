@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--***************************************************************-->
+<!--* file: activity_highscore_info.xml-->
+<!--* author: Christopher Guillian-->
+<!--* class: CS 245 – Programming Graphical User Interfaces-->
+<!--*-->
+<!--* assignment: Android Concentration Game-->
+<!--* date last modified: 12/5/2017-->
+<!--*-->
+<!--* purpose: Fragment for all of the cards to be added in the program (landscape) -->
+<!--*-->
+<!--*-->
+<!--****************************************************************-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_margin="10sp"

@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--/***************************************************************
+* file: activity_game.xml
+* author: Christopher Guillian, Andrew Tek
+* class: CS 245 – Programming Graphical User Interfaces
+*
+* assignment: Android Concentration Game
+* date last modified: 12/5/2017
+*
+* purpose: Holds some of the game logic as well as the score. Also holds the fragment which will
+* display the cards
+*
+****************************************************************/-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_margin="10sp"
