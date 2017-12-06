@@ -101,11 +101,6 @@ public class GameOverActivity extends AppCompatActivity {
         isHighScore();
     }
 
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//    }
-
     // method: isHighScore
     // purpose: if the user gets a new high score, then the program will ask them for their name so it can
     //          store it to an arraylist to store to the file

@@ -30,7 +30,8 @@ public class InfoActivity extends AppCompatActivity {
     NumberPicker numberPicker;
     @BindView(R.id.submitButton)
     Button submitButton;
-    //On create will set the numbers that can be selected in number picker
+    // method: moveToGameActivity
+    // purpose: On create will set the numbers that can be selected in number picker
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

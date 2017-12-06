@@ -13,21 +13,21 @@
 package edu.cpp.concentration;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.util.Log;
 import android.content.Context;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     Button startGame;
     @BindView(R.id.highScoreButton)
     Button highScore;
+
+    // method: onCreate
+    // purpose: Create and display the main menu of the game
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    // method: changeSCreenToActivityInfo
+    // method: changeScreenToActivityInfo
     // purpose: button listener to move to InfoActivity
     @OnClick(R.id.startGameButton)
     public void changeScreenToActivityInfo() {

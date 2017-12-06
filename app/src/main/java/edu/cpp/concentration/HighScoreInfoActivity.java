@@ -34,6 +34,9 @@ public class HighScoreInfoActivity extends AppCompatActivity {
     @BindView(R.id.submitButtonHighScore)
     Button submitButton;
 
+    // method: onCreate
+    // purpose: Presents number picker for user to choose which game type (number of cards) they want to view
+    // for high score purposes.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
