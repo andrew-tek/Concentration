@@ -34,7 +34,8 @@ public class MusicFragment extends Fragment {
     private View thisFragmentView;
     private boolean wasPlaying;
 
-    //runs once, when the fragment is created
+    // method: onCreate
+    // purpose: Create instance and set wasPlaying to true
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
