@@ -13,7 +13,6 @@
 <!--****************************************************************-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_margin="10sp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -24,9 +23,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#000"
             android:text="How many cards?"
             android:textSize="20dp"
-            android:textColor="#000"
             android:layout_margin="10dp"
             />
         <NumberPicker
